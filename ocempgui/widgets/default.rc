@@ -1,0 +1,58 @@
+# $Id: default.rc,v 1.16 2005/09/15 23:37:55 marcusva Exp $
+#
+# Copyright (c) 2004-2005, Marcus von Appen
+# All rights reserved.
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+#  * Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
+#  * Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+
+# Default style for the OcempGUI widget sets.
+
+from ocempgui.widgets import Constants
+
+checkbutton = { "bgcolor" : { Constants.STATE_ACTIVE : (234, 228, 223) },
+                "lightcolor" : { Constants.STATE_ACTIVE : (245, 245, 245) },
+                "darkcolor" : { Constants.STATE_ACTIVE : (30, 30, 30) } }
+radiobutton = { "bgcolor" : { Constants.STATE_ACTIVE : (234, 228, 223) } }
+entry = { "bgcolor" : { Constants.STATE_NORMAL : (255, 255, 255),
+                        Constants.STATE_ENTERED : (255, 255, 255),
+                        Constants.STATE_ACTIVE : (255, 255, 255) },
+          "darkcolor" : { Constants.STATE_ACTIVE : (30, 30, 30) },
+          "lightcolor" : { Constants.STATE_ACTIVE : (245, 245, 245) } }
+progressbar = { "barcolor" : { Constants.STATE_NORMAL : (124, 153, 173),
+                               Constants.STATE_ENTERED : (124, 153, 173),
+                               Constants.STATE_ACTIVE : (124, 153, 173),
+                               Constants.STATE_INSENSITIVE : (124, 153, 173) }
+                }
+scrolledlist = { "selcolor" : { Constants.STATE_NORMAL : (124, 153, 173),
+                                Constants.STATE_ENTERED : (124, 153, 173),
+                                Constants.STATE_ACTIVE : (124, 153, 173),
+                                Constants.STATE_INSENSITIVE : (124, 153, 173) }
+                 }
+scale = { "bgcolor" : { Constants.STATE_ACTIVE : (234, 228, 223) },
+          "darkcolor" : { Constants.STATE_ACTIVE : (30, 30, 30) },
+          "lightcolor" : { Constants.STATE_ACTIVE : (245, 245, 245) },
+          "slider": (16, 16) }
+hscale = { "slider" : (30, 16) }
+vscale = { "slider" : (16, 30) }
+frame = { "darkcolor": { Constants.STATE_NORMAL : (209, 200, 191),
+                         Constants.STATE_INSENSITIVE : (209, 200, 191) },
+          "lightcolor": { Constants.STATE_INSENSITIVE : (245, 245, 245) } }
+window = { "bgcolor" : { Constants.STATE_ACTIVE : (239, 236, 231) } }

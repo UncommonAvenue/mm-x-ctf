@@ -1,0 +1,69 @@
+22:21:15.17  Logging started, 09/07/10                  %%%%%%%%%%%%%%%%%%%%
+22:21:15.17  unsupported opcode 90 at <module>:9                         % %
+22:21:15.41  unsupported opcode 101 at entry:0                           % %
+22:21:15.41  unsupported opcode 101 at imageentry:0                      % %
+22:21:15.41  unsupported opcode 101 at soundentry:0                      % %
+22:21:15.41  unsupported opcode 101 at musicentry:0                      % %
+22:21:15.41  unsupported opcode 101 at library:0                         % %
+22:21:15.41  unsupported opcode 101 at spawn:0                           % %
+22:21:15.41  unsupported opcode 101 at team:0                            % %
+22:21:15.41  unsupported opcode 101 at sprite_engine:0                   % %
+22:21:15.41  unsupported opcode 101 at simplesprite:0                    % %
+22:21:15.41  unsupported opcode 101 at view:0                            % %
+22:21:15.41  unsupported opcode 101 at centeredview:0                    % %
+22:21:15.41  unsupported opcode 101 at networkview:0                     % %
+22:21:15.41  unsupported opcode 90 at <module>:9                         % %
+22:21:15.41  unsupported opcode 90 at <module>:9                         % %
+22:21:15.41  unsupported opcode 84 at <module>:9                         % %
+22:21:15.41  unsupported opcode 101 at hud:0                             % %
+22:21:15.41  unsupported opcode 90 at <module>:9                         % %
+22:21:15.41  unsupported opcode 101 at profile:0                         % %
+22:21:15.41  unsupported opcode 101 at animatedsprite:0                  % %
+22:21:15.41  unsupported opcode 101 at states:0                          % %
+22:21:15.41  unsupported opcode 101 at megamainstates:0                  % %
+22:21:15.41  unsupported opcode 101 at megasubstates:0                   % %
+22:21:15.41  unsupported opcode 101 at megaman:0                         % %
+22:21:15.41  unsupported opcode 101 at dust:0                            % %
+22:21:15.41  unsupported opcode 101 at click:0                           % %
+22:21:15.41  unsupported opcode 101 at projectile:0                      % %
+22:21:15.41  unsupported opcode 101 at proj_charge1:0                    % %
+22:21:15.41  unsupported opcode 101 at proj_charge2:0                    % %
+22:21:15.41  unsupported opcode 101 at animation:0                       % %
+22:21:15.41  unsupported opcode 101 at bubbleanimation:0                 % %
+22:21:15.41  unsupported opcode 101 at flag:0                            % %
+22:21:15.41  unsupported opcode 90 at <module>:9                         % %
+22:21:15.41  unsupported opcode 90 at <module>:9                         % %
+22:21:15.41  unsupported opcode 101 at server_connection:0               % %
+22:21:15.41  unsupported opcode 101 at server:0                          % %
+22:21:15.41  unsupported opcode 90 at <module>:9                         % %
+22:21:15.44  unsupported opcode 101 at client_engine:0                   % %
+22:21:15.44  unsupported opcode 101 at client_connection:0               % %
+22:21:15.44  unsupported opcode 101 at controller:0                      % %
+22:21:15.44  unsupported opcode 101 at servercontroller:0                % %
+22:21:15.44  unsupported opcode 101 at Renderers:0                       % %
+22:21:15.44  unsupported opcode 101 at MainPage:0                        % %
+22:21:15.44  unsupported opcode 101 at HostPage:0                        % %
+22:21:15.44  unsupported opcode 101 at JoinPage:0                        % %
+22:21:15.44  unsupported opcode 101 at ProfileScreenPage:0               % %
+22:21:15.44  unsupported opcode 101 at NewProfilePage:0                  % %
+22:21:15.44  unsupported opcode 101 at SettingsPage:0                    % %
+22:21:15.44  unsupported opcode 101 at MegamanColorPage:0                % %
+22:21:15.44  unsupported opcode 136 at callit:3                          % %
+22:21:15.44  unsupported free or cell vars in after                      % %
+22:21:15.44  unsupported opcode 136 at after:0                           % %
+22:21:15.45  unsupported free or cell vars in after                      % %
+22:21:15.46  unsupported opcode 90 at <module>:3                         % %
+22:21:16.75  unsupported opcode 90 at <module>:3                         % %
+22:21:16.75  unsupported opcode 101 at IncrementalEncoder:0              % %
+22:21:16.75  unsupported opcode 101 at IncrementalDecoder:0              % %
+22:21:16.75  unsupported opcode 101 at StreamWriter:0                    % %
+22:21:16.75  unsupported opcode 101 at StreamReader:0                    % %
+22:21:19.05  unsupported free or cell vars in after                      % %
+22:21:43.47  unsupported free or cell vars in __init__                   % %
+22:21:43.47  unsupported opcode 136 at __init__:3                        % %
+22:21:43.55  unsupported free or cell vars in __init__                   % %
+22:22:09.86  unsupported ** argument in call to show                     % %
+22:22:11.26   ______
+        #1   |100.0 %|  startgame                 ...op\mega06\menu.py:63
+22:22:11.26  memory usage: 3699+ kb                                        %
+22:22:11.26  program exit, 09/07/10                     %%%%%%%%%%%%%%%%%%%%

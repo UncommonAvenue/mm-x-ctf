@@ -1,0 +1,2 @@
+add level select to menu  -ugly but works
+megaman no longer stands on top of flags

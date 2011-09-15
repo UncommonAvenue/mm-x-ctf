@@ -1,0 +1,46 @@
+15:08:32.43  Logging started, 03/11/06                  %%%%%%%%%%%%%%%%%%%%
+15:08:32.53  unsupported opcode 90 at entry:3                            % %
+15:08:32.53  unsupported opcode 90 at imageentry:3                       % %
+15:08:32.53  unsupported opcode 90 at soundentry:3                       % %
+15:08:32.54  unsupported opcode 90 at musicentry:3                       % %
+15:08:32.54  unsupported opcode 90 at library:3                          % %
+15:08:32.54  unsupported opcode 90 at spawn:3                            % %
+15:08:32.54  unsupported opcode 90 at team:3                             % %
+15:08:32.54  unsupported opcode 90 at sprite_engine:3                    % %
+15:08:32.54  unsupported opcode 90 at simplesprite:3                     % %
+15:08:32.54  unsupported opcode 90 at view:3                             % %
+15:08:32.54  unsupported opcode 90 at centeredview:3                     % %
+15:08:32.54  unsupported opcode 90 at networkview:3                      % %
+15:08:32.54  unsupported opcode 90 at Random:3                           % %
+15:08:32.54  unsupported opcode 90 at WichmannHill:3                     % %
+15:08:32.54  unsupported opcode 90 at SystemRandom:3                     % %
+15:08:32.54  unsupported opcode 90 at hud:3                              % %
+15:08:32.54  unsupported opcode 90 at profile:3                          % %
+15:08:32.54  unsupported opcode 90 at animatedsprite:3                   % %
+15:08:32.54  unsupported opcode 90 at states:3                           % %
+15:08:32.54  unsupported opcode 90 at megamainstates:3                   % %
+15:08:32.54  unsupported opcode 90 at megasubstates:3                    % %
+15:08:32.54  unsupported opcode 90 at megaman:3                          % %
+15:08:32.54  unsupported opcode 90 at dust:3                             % %
+15:08:32.54  unsupported opcode 90 at click:3                            % %
+15:08:32.54  unsupported opcode 90 at projectile:3                       % %
+15:08:32.54  unsupported opcode 90 at proj_charge1:3                     % %
+15:08:32.54  unsupported opcode 90 at proj_charge2:3                     % %
+15:08:32.54  unsupported opcode 90 at animation:3                        % %
+15:08:32.54  unsupported opcode 90 at bubbleanimation:3                  % %
+15:08:32.54  unsupported opcode 90 at flag:3                             % %
+15:08:32.56  unsupported opcode 90 at _closedsocket:3                    % %
+15:08:32.56  unsupported opcode 90 at _socketobject:3                    % %
+15:08:32.56  unsupported opcode 90 at _fileobject:3                      % %
+15:08:32.56  unsupported opcode 90 at server_connection:3                % %
+15:08:32.56  unsupported opcode 90 at server:3                           % %
+15:08:32.59  unsupported opcode 90 at client_engine:3                    % %
+15:08:32.59  unsupported opcode 90 at client_connection:3                % %
+15:08:32.59  unsupported opcode 90 at controller:3                       % %
+15:08:32.59  unsupported opcode 90 at servercontroller:3                 % %
+15:08:32.59  unsupported opcode 90 at profile:3                          % %
+15:08:37.98  unsupported opcode 136 at __init__:3                        % %
+15:08:44.75   ______
+        #1   |100.0 %|  startgame                 ...mega06\oldmenu.py:112
+15:08:44.75  memory usage: 2678+ kb                                        %
+15:08:44.75  program exit, 03/11/06                     %%%%%%%%%%%%%%%%%%%%

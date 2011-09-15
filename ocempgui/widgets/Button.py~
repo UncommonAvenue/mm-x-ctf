@@ -1,0 +1,266 @@
+# $Id: Button.py,v 1.33 2005/09/15 16:24:29 marcusva Exp $
+#
+# Copyright (c) 2004-2005, Marcus von Appen
+# All rights reserved.
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+#  * Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
+#  * Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+
+"""A widget, which acts upon click events."""
+
+import pygame.locals
+from Bin import Bin
+from Label import Label
+from Constants import *
+import base
+
+class Button (Bin):
+    """Button (text=None) -> Button ()
+
+    A widget class, which can react upon mouse events.
+
+    The Button widget can listen to mouse events such as clicks or a
+    pressed button. It can display a short text and supports the
+    activation using a keyboard.
+
+    The text to display on the Button can be set using the 'text'
+    attribute or the set_text() method. The text is displayed using a
+    Label widget, which is placed upon the button surface, thus all
+    text capabilities of the Label, such as mnemonics, can be applied
+    to the Button as well.
+
+    button.text = '#Click me'      # Use the C character as mnemonic.
+    button.text = 'Button'         # A simple text.
+    button.set_text ('Button ##1') # Creates the text 'Button #1'
+
+    To operate on the displayed Label directly (which is NOT
+    recommended), the 'child' attribute and set_child() method can be
+    used. They have a slightly different behaviour than the methods of
+    the Bin class and allow only Label widgets to be assigned to the
+    Button. Additionally the Label its 'widget' attribute will be
+    bound to the Button.
+
+    Button.child = Label ('#Button')
+    Button.set_child (None)
+
+    Note: Changing the 'state' attribute of the Button will also
+    affect the state of the Label placed on the Button.
+
+    Default action (invoked by activate()):
+    The Button emulates a SIG_CLICKED event and runs the connected
+    callbacks.
+
+    Mnemonic action (invoked by activate_mnemonic()):
+    The Button invokes the activate_mnemonic() method of its Label (if
+    any).
+
+    Signals:
+    SIG_MOUSEDOWN - Invoked, when a mouse button is pressed on the Button.
+    SIG_MOUSEUP   - Invoked, when a mouse button is released on the Button.
+    SIG_MOUSEMOVE - Invoked, when the mouse moves over the Button.
+    SIG_CLICKED   - Invoked, when the left mouse button is pressed AND
+                    released over the Button.
+    
+    Attributes:
+    text - The text to display on the Button.
+    """
+    def __init__ (self, text=None):
+        Bin.__init__ (self)
+        self.set_text (text)
+
+        # Internal click detector.
+        self.__click = False
+
+        # Signals, the button listens to.
+        self._signals[SIG_MOUSEDOWN] = []
+        self._signals[SIG_MOUSEUP] = []
+        self._signals[SIG_MOUSEMOVE] = []
+        self._signals[SIG_KEYDOWN] = None # Dummy for keyboard activation.
+        self._signals[SIG_CLICKED] = []
+
+    def set_text (self, text=None):
+        """B.set_text (...) -> None
+
+        Sets the text to display on the Button.
+
+        Sets the text to display on the Button by referring to the
+        'text' attribute of it child Label.
+        """
+        if text:
+            if self.child:
+                self.child.set_text (text)
+            else:
+                self.child = Label (text)
+        else:
+            self.child = None
+        self.dirty = True
+
+    def get_text (self):
+        """B.get_text () -> string
+
+        Returns the set text of the Button.
+
+        Returns the text set on the Label of the Button
+        """
+        if self.child:
+            return self.child.text
+        return ""
+    
+    def set_child (self, child=None):
+        """B.set_child (...) -> None
+
+        Sets the Label to display on the Button.
+
+        Creates a parent-child relationship from the Button to a Label
+        and causes the Label to set its mnemonic widget to the Button.
+
+        Raises a TypeError, if the passed argument does not inherit
+        from the Label class.
+        """
+        if child and not isinstance (child, Label):
+            raise TypeError ("child must inherit from Label")
+        Bin.set_child (self, child)
+        if child:
+            child.set_widget (self)
+            if not child.style:
+                child.style = self.style or \
+                              base.GlobalStyle.get_style (self.__class__)
+        self.dirty = True
+
+    def set_state (self, state):
+        """B.set_state (...) -> None
+
+        Sets the state of the Button.
+
+        Sets the state of the Button and causes its child to set its
+        state to the same value.
+        """
+        Bin.set_state (self, state)
+        if self.child:
+            self.child.state = self.state
+
+    def activate_mnemonic (self, mnemonic):
+        """B.activate_mnemonic (...) -> bool
+
+        Activates the mnemonic of the Button its Label.
+        """
+        if self.child:
+            return self.child.activate_mnemonic (mnemonic)
+        return False
+    
+    def activate (self):
+        """B.activate () -> None
+
+        Activates the Button default action.
+
+        Activates the Button default action. This usually means a click,
+        emulated by setting the state to STATE_ACTIVE, forcing an
+        update, setting the state back to STATE_NORMAL and running the
+        attached callbacks for the SIG_CLICKED event.
+        """
+        if base.debug: print "Button.activate ()"
+        if not self.sensitive:
+            return
+        self.focus = True
+        self.state = STATE_ACTIVE
+        try:
+            self.manager.force_update (100)
+        except: pass
+        self.state = STATE_NORMAL
+        self.run_signal_handlers (SIG_CLICKED)
+                    
+    def draw (self):
+        """B.draw () -> Surface
+
+        Draws the Button surface and returns it.
+
+        Creates the visible surface of the Button and returns it to the
+        caller.
+        """
+       # if self.child:
+       #     self.child.update ()
+       # return base.GlobalStyle.draw_button (self)
+    
+    	font = pygame.font.Font(None, 24)
+	return font.render(self.child.text, 1, (255,255,255,255))
+    
+    def notify (self, event):
+        """B.notify (...) -> None
+
+        Notifies the Button about an event.
+        """
+        if not self.eventarea or not self.sensitive:
+            # The button does not seem to be completely realized for now or
+            # is not sensitive.
+            return
+
+        elif event.signal == SIG_MOUSEDOWN:
+            if self.eventarea.collidepoint (event.data.pos):
+                if base.debug: print "Button.MOUSEDOWN"
+                self.focus = True
+                # The button only acts upon left clicks.
+                if event.data.button == 1:
+                    self.state = STATE_ACTIVE
+                    self.__click = True
+                self.run_signal_handlers (SIG_MOUSEDOWN)
+
+        elif event.signal == SIG_MOUSEUP:
+            if self.eventarea.collidepoint (event.data.pos):
+                if base.debug: print "Button.MOUSEUP"
+                self.run_signal_handlers (SIG_MOUSEUP)
+                if event.data.button == 1:
+                    if self.state == STATE_ACTIVE:
+                        self.state = STATE_ENTERED
+                    else:
+                        self.state = STATE_NORMAL
+                    # Check for a previous left click.
+                    if self.__click:
+                        self.__click = False
+                        if base.debug: print "Button.CLICKED"
+                        self.run_signal_handlers (SIG_CLICKED)
+            elif (event.data.button == 1) and (self.state == STATE_ACTIVE):
+                # Reset the 'clicked' state for the button, if the mouse
+                # button 1 is released at another location.
+                self.__click = False
+                self.state = STATE_NORMAL
+
+        elif event.signal == SIG_MOUSEMOVE:
+            if self.eventarea.collidepoint (event.data.pos):
+                if base.debug: print "Button.MOUSEMOVE (inner)"
+                if self.state == STATE_NORMAL:
+                    self.state = STATE_ENTERED
+                self.run_signal_handlers (SIG_MOUSEMOVE)
+            elif self.state == STATE_ENTERED:
+                if base.debug: print "Button.MOUSEMOVE (outer)"
+                self.state = STATE_NORMAL
+
+        elif (event.signal == SIG_KEYDOWN) and self.focus:
+            if event.data.key in (pygame.locals.K_SPACE,
+                                  pygame.locals.K_KP_ENTER,
+                                  pygame.locals.K_RETURN):
+                # Activate the focused button, if the user presses
+                # space, return or enter.
+                self.activate ()
+        
+        Bin.notify (self, event)
+
+    text = property (lambda self: self.get_text (),
+                     lambda self, var: self.set_text (var),
+                     doc = "The text of the Button.")
